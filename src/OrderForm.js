@@ -4,7 +4,10 @@ const OrderForm = props =>{
     const {
         values,
         onInputChange,
-        onSubmit
+        onCheckboxchange,
+        onSubmit,
+        disabled,
+        errors
     } = props
 
     return(
@@ -54,7 +57,7 @@ const OrderForm = props =>{
                     name="sauce" 
                     type="radio" 
                     onChange={onInputChange}
-                    value={values.sauce} 
+                    value={values.sauce}
                 />
                 <label htmlFor="original">Original Red</label><br></br>
                 <input
@@ -93,31 +96,37 @@ const OrderForm = props =>{
                     id="pepperoni" 
                     name="pepperoni" 
                     type="checkbox" 
+                    onChange={onCheckboxchange}
                 /><label htmlFor="pepperoni">Pepperoni</label>
                 <input
                     id="sausage" 
                     name="sausage" 
                     type="checkbox" 
+                    onChange={onCheckboxchange}
                 /><label htmlFor="sausage">Sausage</label><br></br>
                 <input
                     id="cBacon" 
                     name="cBacon" 
                     type="checkbox" 
+                    onChange={onCheckboxchange}
                 /><label htmlFor="cBacon">Canadian Bacon</label>
                 <input
                     id="onions" 
                     name="onions" 
-                    type="checkbox" 
+                    type="checkbox"
+                    onChange={onCheckboxchange} 
                 /><label htmlFor="onions">Onions</label><br></br>
                 <input
                     id="olives" 
                     name="olives" 
                     type="checkbox" 
+                    onChange={onCheckboxchange}
                 /><label htmlFor="olives">Black Olives</label>
                 <input
                     id="pineapple" 
                     name="pineapple" 
                     type="checkbox" 
+                    onChange={onCheckboxchange}
                 /><label htmlFor="pineapple">Pineapple</label>
 
             </label>
@@ -139,7 +148,7 @@ const OrderForm = props =>{
             <br></br>
 
             {/* Submit Order Btn */}
-            <button type="submit">Place Order</button>
+            <button type="submit" disabled={disabled}>Place Order</button>
 
         </form>
     )
