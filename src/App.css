@@ -59,6 +59,7 @@ button:hover button:disabled{
   border-color: #909090;
 }
 
-.required{
+.required, .error{
   color: crimson;
 }
+

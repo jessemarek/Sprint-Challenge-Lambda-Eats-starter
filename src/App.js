@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import axios from 'axios'
 import * as yup from 'yup'
 
@@ -23,15 +23,15 @@ const initFormValues = {
     cBacon: false,
     onions: false,
     olives: false,
-    pineapple: false
+    pineapple: false,
   },
-  special: ''
+  special: '',
 }
 
 const initFormErrors = {
   name: '',
   size: '',
-  sauce: ''
+  sauce: '',
 }
 
 //Form Validation Schema
@@ -48,7 +48,10 @@ const formSchema = yup.object().shape({
   sauce:
     yup
       .string()
-      .required('You must choose a type of sauce')
+      .required('You must choose a type of sauce'),
+  special:
+    yup
+      .string()
 })
 
 const App = () => {
@@ -96,24 +99,11 @@ const App = () => {
     const name = e.target.name
     const isChecked = e.target.checked
 
-    yup
-      .reach(formSchema, name)
-      .validate(isChecked)
-      .then(valid => {
-        //Clear the errors if the value passes the test
-        setFormErrors({
-          ...formErrors, [name]: '',
-        })
-      })
-      .catch(err => {
-        //Set our error message into the formErrors if it doesn't pass the test
-        setFormErrors({
-          ...formErrors, [name]: err.errors[0],
-        })
-      })
-
     setFormValues({
-      ...formValues, [name]: isChecked,
+      ...formValues,
+        toppings:{
+          ...formValues.toppings, [name]: isChecked
+        },
     })
 
   }
@@ -145,8 +135,20 @@ const App = () => {
   const onSubmit = e => {
     e.preventDefault()
 
+    //Structure the data into the format we need
+    const newOrder = {
+      name: formValues.name,
+      size: formValues.size,
+      sauce: formValues.sauce,
+      toppings: 
+        Object
+          .keys(formValues.toppings)
+          .filter(t => formValues.toppings[t] === true),
+      special: formValues.special
+    }
+
     //Submit the order
-    postOrder(formValues)
+    postOrder(newOrder)
 
     //Reset the form
     setFormValues(initFormValues)
@@ -156,6 +158,9 @@ const App = () => {
   return (
     <div className="container">
       <h1>Lambda Eats</h1>
+      <Route path={'/pizza'}>
+        <Link to={'/'}><button>Home</button></Link>
+      </Route>
 
       <Switch>
         <Route path={"/pizza"}>
@@ -166,6 +171,7 @@ const App = () => {
             onSubmit={onSubmit}
             disabled={submitDisabled}
             errors={formErrors}
+            orders={orderList}
           />
         </Route>
 

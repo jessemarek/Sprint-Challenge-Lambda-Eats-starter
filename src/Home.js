@@ -5,7 +5,7 @@ const Home = props =>{
 
     return(
         <div className="container">
-            <Link to={"/pizza"} ><button>Order Pizza</button></Link>
+            <Link to={"/pizza"} ><button data-cy="order-btn">Order Pizza</button></Link>
 
         </div>
     )
