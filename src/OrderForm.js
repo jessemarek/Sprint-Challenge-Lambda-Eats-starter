@@ -1,9 +1,14 @@
 import React from 'react'
 
 const OrderForm = props =>{
+    const {
+        values,
+        onInputChange,
+        onSubmit
+    } = props
 
     return(
-        <form className="container">
+        <form className="container" onSubmit={onSubmit}>
 
             {/* Customers Name */}
             <label
@@ -13,6 +18,8 @@ const OrderForm = props =>{
                         id="name"
                         name="name"
                         type="text"
+                        onChange={onInputChange}
+                        value={values.name}
                     />
             </label>
 
@@ -25,6 +32,8 @@ const OrderForm = props =>{
                 <select 
                     id="size"
                     name="size"
+                    onChange={onInputChange}
+                    value={values.size}
                 >
                     <option value="">Select</option>
                     <option value="small">Small</option>
@@ -44,28 +53,32 @@ const OrderForm = props =>{
                     id="original" 
                     name="sauce" 
                     type="radio" 
-                    value="original" 
+                    onChange={onInputChange}
+                    value={values.sauce} 
                 />
                 <label htmlFor="original">Original Red</label><br></br>
                 <input
                     id="garlic" 
                     name="sauce" 
                     type="radio" 
-                    value="garlic" 
+                    onChange={onInputChange}
+                    value={values.sauce} 
                 />
                 <label htmlFor="garlic">Garlic Ranch</label><br></br>
                 <input
                     id="bbq" 
                     name="sauce" 
                     type="radio" 
-                    value="bbq" 
+                    onChange={onInputChange}
+                    value={values.sauce} 
                 />
                 <label htmlFor="bbq">BBQ Sauce</label><br></br>
                 <input
                     id="spinach" 
                     name="sauce" 
                     type="radio" 
-                    value="spinach" 
+                    onChange={onInputChange}
+                    value={values.sauce} 
                 />
                 <label htmlFor="spinach">Spinach Alfredo</label>
 
@@ -117,8 +130,10 @@ const OrderForm = props =>{
                 <textarea
                     id="special"
                     name="special"
-                    placeholder="Anything else you'd like to add?">
-                </textarea>
+                    placeholder="Anything else you'd like to add?"
+                    onChange={onInputChange}
+                    value={values.special}
+                ></textarea>
             </label>
 
             <br></br>
