@@ -38,6 +38,7 @@ const OrderForm = props => {
                 >Choose Size<span className="required">*</span><br></br>
                     <select
                         id="size"
+                        data-cy="size"
                         name="size"
                         onChange={onInputChange}
                         value={values.size}
@@ -54,43 +55,50 @@ const OrderForm = props => {
 
                 {/* Choose Pizza Sauce radio btns */}
                 <div>
-                    <label
-                    >Choose Sauce<span className="required">*</span><br></br>
+                    <p>Choose Sauce</p>
 
-                        <input
-                            id="original"
-                            name="sauce"
-                            type="radio"
-                            onChange={onInputChange}
-                            value="original"
-                        />
-                        <label htmlFor="original">Original Red</label><br></br>
-                        <input
-                            id="garlic"
-                            name="sauce"
-                            type="radio"
-                            onChange={onInputChange}
-                            value="garlic"
-                        />
-                        <label htmlFor="garlic">Garlic Ranch</label><br></br>
-                        <input
-                            id="bbq"
-                            name="sauce"
-                            type="radio"
-                            onChange={onInputChange}
-                            value="bbq"
-                        />
-                        <label htmlFor="bbq">BBQ Sauce</label><br></br>
-                        <input
-                            id="spinach"
-                            name="sauce"
-                            type="radio"
-                            onChange={onInputChange}
-                            value="spinach"
-                        />
-                        <label htmlFor="spinach">Spinach Alfredo</label>
+                    <input
+                        id="original"
+                        data-cy="original"
+                        name="sauce"
+                        type="radio"
+                        onChange={onInputChange}
+                        value="original"
+                        checked={values.sauce === 'original' ? true : false}
+                    />
+                    <label htmlFor="original">Original Red</label><br></br>
+                    <input
+                        id="garlic"
+                        data-cy="garlic"
+                        name="sauce"
+                        type="radio"
+                        onChange={onInputChange}
+                        value="garlic"
+                        checked={values.sauce === 'garlic' ? true : false}
+                    />
+                    <label htmlFor="garlic">Garlic Ranch</label><br></br>
+                    <input
+                        id="bbq"
+                        data-cy="bbq"
+                        name="sauce"
+                        type="radio"
+                        onChange={onInputChange}
+                        value="bbq"
+                        checked={values.sauce === 'bbq' ? true : false}
+                    />
+                    <label htmlFor="bbq">BBQ Sauce</label><br></br>
+                    <input
+                        id="spinach"
+                        data-cy="spinach"
+                        name="sauce"
+                        type="radio"
+                        onChange={onInputChange}
+                        value="spinach"
+                        checked={values.sauce === 'spinach' ? true : false}
+                    />
+                    <label htmlFor="spinach">Spinach Alfredo</label>
 
-                    </label>
+
                 </div>
 
                 <br></br>
@@ -100,13 +108,15 @@ const OrderForm = props => {
 
                     <input
                         id="pepperoni"
+                        data-cy="pepperoni"
                         name="pepperoni"
                         type="checkbox"
-                        onChange={onCheckboxChange} 
-                        checked={values.toppings.pepperoni} 
+                        onChange={onCheckboxChange}
+                        checked={values.toppings.pepperoni}
                     /><label htmlFor="pepperoni">Pepperoni</label>
                     <input
                         id="sausage"
+                        data-cy="sausage"
                         name="sausage"
                         type="checkbox"
                         onChange={onCheckboxChange}
@@ -114,6 +124,7 @@ const OrderForm = props => {
                     /><label htmlFor="sausage">Sausage</label><br></br>
                     <input
                         id="cBacon"
+                        data-cy="cBacon"
                         name="cBacon"
                         type="checkbox"
                         onChange={onCheckboxChange}
@@ -121,6 +132,7 @@ const OrderForm = props => {
                     /><label htmlFor="cBacon">Canadian Bacon</label>
                     <input
                         id="onions"
+                        data-cy="onions"
                         name="onions"
                         type="checkbox"
                         onChange={onCheckboxChange}
@@ -128,6 +140,7 @@ const OrderForm = props => {
                     /><label htmlFor="onions">Onions</label><br></br>
                     <input
                         id="olives"
+                        data-cy="olives"
                         name="olives"
                         type="checkbox"
                         onChange={onCheckboxChange}
@@ -135,6 +148,7 @@ const OrderForm = props => {
                     /><label htmlFor="olives">Black Olives</label>
                     <input
                         id="pineapple"
+                        data-cy="pineapple"
                         name="pineapple"
                         type="checkbox"
                         onChange={onCheckboxChange}
@@ -150,6 +164,7 @@ const OrderForm = props => {
                     Special Instructions<br></br>
                     <textarea
                         id="special"
+                        data-cy="special"
                         name="special"
                         placeholder="Anything else you'd like to add?"
                         onChange={onInputChange}
@@ -160,7 +175,13 @@ const OrderForm = props => {
                 <br></br>
 
                 {/* Submit Order Btn */}
-                <button type="submit" disabled={disabled}>Place Order</button>
+                <button
+                    data-cy="submit"
+                    type="submit"
+                    disabled={disabled}
+                >
+                    Place Order
+                </button>
 
             </form>
 

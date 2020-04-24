@@ -28,13 +28,14 @@ const initFormValues = {
   special: '',
 }
 
+//Initial formErrors
 const initFormErrors = {
   name: '',
   size: '',
   sauce: '',
 }
 
-//Form Validation Schema
+/************************ Validation Format ************************/
 const formSchema = yup.object().shape({
   name:
     yup
@@ -56,7 +57,7 @@ const formSchema = yup.object().shape({
 
 const App = () => {
 
-  //States
+  /************************ App States ************************/
   const [orderList, setOrderList] = useState([])
 
   const [formValues, setFormValues] = useState(initFormValues)
@@ -65,12 +66,15 @@ const App = () => {
 
   const [submitDisabled, setSubmitDisabled] = useState(true)
 
-  //Callbacks
 
+  /************************ Callbacks ************************/
+
+  //Input change handler
   const onInputChange = e => {
     const name = e.target.name
     const value = e.target.value
 
+    //Check form validation on input change
     yup
       .reach(formSchema, name)
       .validate(value)
@@ -94,16 +98,17 @@ const App = () => {
 
   }
 
-  //Check form validation when the checkbox changes
+  //Checkbox change handler
   const onCheckboxChange = e => {
     const name = e.target.name
     const isChecked = e.target.checked
 
+    //Change state when the checkboxes are changed
     setFormValues({
       ...formValues,
-        toppings:{
-          ...formValues.toppings, [name]: isChecked
-        },
+      toppings: {
+        ...formValues.toppings, [name]: isChecked
+      },
     })
 
   }
@@ -118,10 +123,12 @@ const App = () => {
 
   }, [formValues])
 
+  //Send data from order form to server
   const postOrder = (data) => {
     axios
       .post(baseURL, data)
       .then(res => {
+        //Add the newOrder to the orderList
         const newOrder = res.data
         setOrderList([
           ...orderList, newOrder
@@ -132,6 +139,7 @@ const App = () => {
       })
   }
 
+  //Submit the order form
   const onSubmit = e => {
     e.preventDefault()
 
@@ -140,7 +148,7 @@ const App = () => {
       name: formValues.name,
       size: formValues.size,
       sauce: formValues.sauce,
-      toppings: 
+      toppings:
         Object
           .keys(formValues.toppings)
           .filter(t => formValues.toppings[t] === true),
