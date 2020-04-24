@@ -14,6 +14,9 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
 2. How would you explain form validation to someone who has never programmed before?
+
+    *Form validation is a way of creating a checklist of requirements a form needs to have before it can be submitted*
+    
 3. In 1-2 sentences, define end to end testing.
 
 You are expected to be able to answer all these questions. Your responses contribute to your Sprint Challenge grade. Skipping this section **will** prevent you from passing this challenge.
